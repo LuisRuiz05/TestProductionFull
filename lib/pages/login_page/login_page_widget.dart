@@ -82,16 +82,22 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Welcome Back',
-                          style: FlutterFlowTheme.of(context).displaySmall,
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 12.0, 0.0, 24.0),
+                        Align(
+                          alignment: AlignmentDirectional(0.0, -1.0),
                           child: Text(
-                            'Let\'s get started by filling out the form below.',
-                            style: FlutterFlowTheme.of(context).labelMedium,
+                            'Welcome Back',
+                            style: FlutterFlowTheme.of(context).displaySmall,
+                          ),
+                        ),
+                        Align(
+                          alignment: AlignmentDirectional(0.0, 0.0),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 12.0, 0.0, 24.0),
+                            child: Text(
+                              'Let\'s get started by filling out the form below.',
+                              style: FlutterFlowTheme.of(context).labelMedium,
+                            ),
                           ),
                         ),
                         Padding(
@@ -195,41 +201,45 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 .asValidator(context),
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 16.0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              GoRouter.of(context).prepareAuthEvent();
+                        Align(
+                          alignment: AlignmentDirectional(0.0, 0.0),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 16.0),
+                            child: FFButtonWidget(
+                              onPressed: () async {
+                                GoRouter.of(context).prepareAuthEvent();
 
-                              final user = await authManager.signInWithEmail(
-                                context,
-                                _model.emailTextController.text,
-                                _model.passwordTextController.text,
-                              );
-                              if (user == null) {
-                                return;
-                              }
+                                final user = await authManager.signInWithEmail(
+                                  context,
+                                  _model.emailTextController.text,
+                                  _model.passwordTextController.text,
+                                );
+                                if (user == null) {
+                                  return;
+                                }
 
-                              context.goNamedAuth('HomePage', context.mounted);
-                            },
-                            text: 'Sign In',
-                            options: FFButtonOptions(
-                              width: 370.0,
-                              height: 44.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .titleSmall
-                                  .override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.white,
-                                  ),
-                              elevation: 3.0,
-                              borderRadius: BorderRadius.circular(12.0),
+                                context.goNamedAuth(
+                                    'HomePage', context.mounted);
+                              },
+                              text: 'Sign In',
+                              options: FFButtonOptions(
+                                width: 370.0,
+                                height: 44.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: 'Readex Pro',
+                                      color: Colors.white,
+                                    ),
+                                elevation: 3.0,
+                                borderRadius: BorderRadius.circular(12.0),
+                              ),
                             ),
                           ),
                         ),
